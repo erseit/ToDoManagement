@@ -125,7 +125,7 @@ docker run -d --name [container_name] --net [network_name] -v [path_to_root_fold
 - Frontend Port Nummer is to be defined in [Dockerfile](https://github.com/erseit/ToDoManagement/blob/main/client/Dockerfile) in client folder. If frontend and backend both are started on the same resource,
   it should match with the URI and Port Nummer which is to be defined in backend build for CORS Policy.
   
-  default Port Nummer = 3333
+  default Port Nummer : 3333
 
 - Go to client folder with command lines
 ```
