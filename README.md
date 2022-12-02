@@ -114,7 +114,7 @@ docker run -d --name [container_name] --net [network_name] -v [path_to_root_fold
 
 4. Now server is available on `http://localhost:80`.
 
-To read more about the Todo API, run the Project and visit http://localhost:80/wiki.html to see the swagger documentation.
+- To read more about the Todo API, run the Project and visit http://localhost:80/wiki.html to see the swagger documentation.
 
 5. Build frontend
 
