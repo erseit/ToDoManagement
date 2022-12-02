@@ -86,7 +86,7 @@ git clone https://github.com/erseit/ToDoManagement.git
 - If frontend and backend both are started on the same resource, we should disable CORS. 
   It was defined in [ApiController.java](https://github.com/erseit/ToDoManagement/blob/main/firstapi/src/main/java/com/example/firstapi/ApiController.java). URI and Port Nummer of Frontend should be given
 ```
-@CrossOrigin(origins = "http://localhost:3333", maxAge = 360000)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 360000)
 ```
 
 - Go to server folder with command lines
@@ -125,7 +125,7 @@ docker run -d --name [container_name] --net [network_name] -v [path_to_root_fold
 - Frontend Port Nummer is to be defined in [Dockerfile](https://github.com/erseit/ToDoManagement/blob/main/client/Dockerfile) in client folder. If frontend and backend both are started on the same resource,
   it should match with the URI and Port Nummer which is to be defined in backend build for CORS Policy.
   
-  default Port Nummer : 3333
+  default Port Nummer : 3000
 
 - Go to client folder with command lines
 ```
@@ -136,11 +136,11 @@ cd [path_to_root_folder]/client
 docker build -t [image_name] .
 ```
 
-- Start a container. This container listens in outside port 3333:inside port 3333
+- Start a container. This container listens in outside port 3000:inside port 3000
 ```
-docker run -d --name [container_name] -p 3333:3333 -t [image_name]
+docker run -d --name [container_name] -p 3000:3000 -t [image_name]
 ```
 
-6. Now client is available on `http://localhost:3333`.
+6. Now client is available on `http://localhost:3000`.
 
 
