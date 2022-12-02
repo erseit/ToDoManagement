@@ -87,6 +87,7 @@ public class ApiController {
     // Add new item to list with a JSON object
     @Operation(summary = "Creates a ToDo Item.", description = "## Creates a ToDo with a JSON Object" + "\n\n" +
             "ToDo's name must not be **empty** or default value **\"string\"**" + "\n\n" +
+            "isClosed attribute must be **false**" + "\n\n" +
             "Priority should be **selected with this classification numbers:**" + "\n\n" +
             "- **1** - Urgency level: Highest" + "\n\n" +
             "- **2** - Urgency level: Higher" + "\n\n" +
