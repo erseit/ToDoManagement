@@ -84,7 +84,7 @@ git clone https://github.com/erseit/ToDoManagement.git
 3. Build backend
 
 - If frontend and backend both are started on the same resource, we should disable CORS. 
-  It was defined in ApiController.java. URI and Port Nummer of Frontend should be given
+  It was defined in [ApiController.java](https://github.com/erseit/ToDoManagement/blob/main/firstapi/src/main/java/com/example/firstapi/ApiController.java). URI and Port Nummer of Frontend should be given
 ```
 @CrossOrigin(origins = "http://localhost:3333", maxAge = 360000)
 ```
@@ -118,10 +118,10 @@ docker run -d --name [container_name] --net [network_name] -v [path_to_root_fold
 
 5. Build frontend
 
-- Backend end point is to be defined in next.config.js. It should be updated before build, if backend end point has to be changed.
+- Backend end point is to be defined in [next.config.js](https://github.com/erseit/ToDoManagement/blob/main/client/next.config.js). It should be updated before build, if backend end point has to be changed.
   default backend end point : http://localhost:80
 
-- Frontend Port Nummer is to be defined in Dockerfile in client folder. If frontend and backend both are started on the same resource,
+- Frontend Port Nummer is to be defined in [Dockerfile](https://github.com/erseit/ToDoManagement/blob/main/client/Dockerfile) in client folder. If frontend and backend both are started on the same resource,
   it should match with the URI and Port Nummer which is to be defined in backend build for CORS Policy.
   default Port Nummer = 3333
 
