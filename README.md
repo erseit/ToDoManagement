@@ -5,7 +5,7 @@
 ## 📌 - Description
 
 With this ToDo App you can create and manage your ToDos. You can see at the top of the site the number of total and done todos. 
-When creating the ToDo you should give the name of the ToDo. If there is already a ToDo with this name and it is still opened, 
+When creating the ToDo you should give the name. If there is already a ToDo with this name and it is still opened, 
 you receives an error alert and can't create the new todo. It is valid also for edit a name of existing ToDo. You can specify the priority level
 of the ToDo. Default is 2. You should select the levels within the range 1 - 5. Level 1 has the highste urgency.
 You can edit or delete a ToDo.
