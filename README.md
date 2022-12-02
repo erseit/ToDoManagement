@@ -119,10 +119,12 @@ docker run -d --name [container_name] --net [network_name] -v [path_to_root_fold
 5. Build frontend
 
 - Backend end point is to be defined in [next.config.js](https://github.com/erseit/ToDoManagement/blob/main/client/next.config.js). It should be updated before build, if backend end point has to be changed.
+  
   default backend end point : http://localhost:80
 
 - Frontend Port Nummer is to be defined in [Dockerfile](https://github.com/erseit/ToDoManagement/blob/main/client/Dockerfile) in client folder. If frontend and backend both are started on the same resource,
   it should match with the URI and Port Nummer which is to be defined in backend build for CORS Policy.
+  
   default Port Nummer = 3333
 
 - Go to client folder with command lines
