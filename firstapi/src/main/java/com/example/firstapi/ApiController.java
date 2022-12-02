@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 // CRUD Controller class
-@CrossOrigin(origins = "http://localhost:3333", maxAge = 360000)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 360000)
 @RestController
 @RequestMapping("/todos")
 public class ApiController {
