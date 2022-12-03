@@ -4,11 +4,11 @@
 
 ## 📌 - Description
 
-With this ToDo App you can create and manage your ToDos. You can see at the top of the site the number of total and done todos. 
+With this ToDo App you can create and manage your ToDos. You can see at the top of the site [the number of total and done todos](https://user-images.githubusercontent.com/100692657/205428221-6588f29b-a375-4c5e-a65a-9df3a49b3ecb.png). 
 When creating the ToDo you should give the name. If there is already a ToDo with this name and it is still opened, 
-you receive an error alert and can't create the new todo. It is valid also for edit a name of existing ToDo. You can specify the priority level
-of the ToDo. Default is 2. You should select the levels within the range 1 - 5. Level 1 has the highste urgency.
-You can edit or delete a ToDo.
+you receive an [error alert](https://user-images.githubusercontent.com/100692657/205428282-92d36e06-d668-4bdc-8522-f990256a4f6d.png) and can't create the new todo. It is valid also for edit a name of existing ToDo. You can specify the [priority level](https://user-images.githubusercontent.com/100692657/205428217-cc13532f-c8e0-4492-b61c-67f7109010cb.png)
+of the ToDo. Default is 2. You should select the levels within the range 1 - 5. Level 1 has the highest urgency.
+You can [edit](https://user-images.githubusercontent.com/100692657/205428219-33a1c28c-6b97-49db-8ca4-a33f621cd5c9.png) or [delete](https://user-images.githubusercontent.com/100692657/205428220-d6302ff9-6948-4945-88ab-564ebf638955.png) a ToDo. You receive an [alert message](https://user-images.githubusercontent.com/100692657/205428218-f2cd0776-83da-4a77-a204-1ceea556d161.png) after all interactions with server.
 
 
 ## 🛠️ - Tech Stack
