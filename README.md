@@ -118,7 +118,7 @@ docker run -d --name [container_name] --net [network_name] -v [path_to_root_fold
 
 5. Build frontend
 
-- Backend end point is to be defined in [next.config.js](https://github.com/erseit/ToDoManagement/blob/main/client/next.config.js). It should be updated before build, if backend end point has to be changed.
+- Backend end point is to be defined in [next.config.js](https://github.com/erseit/ToDoManagement/blob/main/client/next.config.js). It should be updated before build, if it has to be changed.
   
   default backend end point : `http://localhost:80`
 
