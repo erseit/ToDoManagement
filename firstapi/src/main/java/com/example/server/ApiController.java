@@ -1,9 +1,8 @@
-package com.example.firstapi;
+package com.example.server;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,25 +22,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 // CRUD Controller class
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 360000)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/todos")
 public class ApiController {
 
-    private ArrayList<TodoItem> items = new ArrayList<TodoItem>();
+    @Autowired
+    TodoItemRepository todoItemRepository;
 
-    public TodoItem findItemWithId(String id) {
-        Iterator<TodoItem> i = items.iterator();
-        while (i.hasNext()) {
-            TodoItem template = i.next();
-            if (template.getID().equalsIgnoreCase(id)) {
-                return template;
-            }
-        }
-        return new TodoItem();
-    }
-
-    public TodoItem findItemWithName(String todo) {
+    public TodoItem findItemWithName(List<TodoItem> items, String todo) {
         Iterator<TodoItem> i = items.iterator();
         while (i.hasNext()) {
             TodoItem template = i.next();
@@ -71,11 +60,12 @@ public class ApiController {
     public ResponseEntity<TodoItem> createAndAddItem(
             @PathVariable @Parameter(name = "name", description = "Give the name of todo.") String name) {
         try {
-            TodoItem requestedItem = findItemWithName(name);
-            TodoItem item = new TodoItem(name);
-            if (requestedItem.getID() == null) {
-                items.add(item);
-                return new ResponseEntity<TodoItem>(item, HttpStatus.CREATED);
+            List<TodoItem> allItems = todoItemRepository.findAll();
+            TodoItem newItem = new TodoItem(name);
+            TodoItem existingItem = findItemWithName(allItems, name);
+            if (existingItem.getID() == null) {
+                todoItemRepository.save(newItem);
+                return new ResponseEntity<TodoItem>(newItem, HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
@@ -103,15 +93,16 @@ public class ApiController {
     @PostMapping("/")
     public ResponseEntity<TodoItem> addItem(@RequestBody TodoItem item) {
         try {
+            List<TodoItem> allItems = todoItemRepository.findAll();
             if (item.getTodo().length() == 0 || item.getTodo().equalsIgnoreCase("string") || item.getPriority() < 1
                     || item.getPriority() > 5) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             } else {
-                TodoItem requestedItem = findItemWithName(item.getTodo());
+                TodoItem requestedItem = findItemWithName(allItems, item.getTodo());
                 if (requestedItem.getID() == null) {
-                    TodoItem temp = new TodoItem(item.getTodo(), item.getPriority());
-                    items.add(temp);
-                    return new ResponseEntity<TodoItem>(temp, HttpStatus.CREATED);
+                    TodoItem newItem = new TodoItem(item.getTodo(), item.getPriority());
+                    todoItemRepository.save(newItem);
+                    return new ResponseEntity<TodoItem>(newItem, HttpStatus.CREATED);
                 } else {
                     return new ResponseEntity<>(HttpStatus.FORBIDDEN);
                 }
@@ -141,26 +132,27 @@ public class ApiController {
     @PutMapping("/{id}")
     public ResponseEntity<TodoItem> updateItem(@PathVariable String id, @RequestBody(required = false) TodoItem item) {
         try {
-            TodoItem requestedItem = findItemWithId(id);
-            if (requestedItem.getID() == null) {
+            List<TodoItem> allItems = todoItemRepository.findAll();
+            TodoItem existingItem = todoItemRepository.findById(id).get();
+            if (existingItem.getID() == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } else {
-                TodoItem requestedItemTodo = findItemWithName(item.getTodo());
+                TodoItem existingTodo = findItemWithName(allItems, item.getTodo());
 
-                if(requestedItemTodo.getID() != null && (requestedItemTodo.getID() != requestedItem.getID())) {
+                if(existingTodo.getID() != null && (existingTodo.getID() != existingItem.getID())) {
                     return new ResponseEntity<>(HttpStatus.FORBIDDEN);
                 }
 
-                if (item.getTodo().length() > 0 && !item.getTodo().equalsIgnoreCase("string") && (requestedItemTodo.getID() == null)) {
-                    requestedItem.setTodo(item.getTodo());
+                if (item.getTodo().length() > 0 && !item.getTodo().equalsIgnoreCase("string") && (existingTodo.getID() == null)) {
+                    existingItem.setTodo(item.getTodo());
                 }
                 if (item.getPriority() > 0 && item.getPriority() < 6) {
-                    requestedItem.setPriority(item.getPriority());
+                    existingItem.setPriority(item.getPriority());
                 }
                 if (item.getIsClosed()) {
-                    requestedItem.setIsClosed(item.getIsClosed());
+                    existingItem.setIsClosed(item.getIsClosed());
                 }
-                return new ResponseEntity<TodoItem>(requestedItem, HttpStatus.OK);
+                return new ResponseEntity<TodoItem>(existingItem, HttpStatus.OK);
 
             }
         } catch (Exception e) {
@@ -178,11 +170,11 @@ public class ApiController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable String id) {
         try {
-            TodoItem requestedItem = findItemWithId(id);
-            if (requestedItem.getID() == null) {
+            TodoItem existingItem = todoItemRepository.findById(id).get();
+            if (existingItem.getID() == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } else {
-                items.remove(requestedItem);
+                todoItemRepository.delete(existingItem);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
         } catch (Exception e) {
@@ -199,7 +191,8 @@ public class ApiController {
     })
     public ResponseEntity<List<TodoItem>> getItems() {
         try {
-            return new ResponseEntity<List<TodoItem>>(items, HttpStatus.OK);
+            List<TodoItem> allItems = todoItemRepository.findAll();
+            return new ResponseEntity<List<TodoItem>>(allItems, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

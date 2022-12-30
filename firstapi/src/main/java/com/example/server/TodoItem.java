@@ -1,13 +1,15 @@
-package com.example.firstapi;
+package com.example.server;
 import java.io.Serializable;
 import java.util.Random;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Entity
 public class TodoItem implements Serializable {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Id
     private String id = this.generateID();
-    
     private String todo;
     private int priority = 2;
     private boolean isClosed = false;
