@@ -1,6 +1,7 @@
 # Install dependencies only when needed
 FROM node:16-alpine AS deps
-
+ARG BACKEND_ENDPOINT
+ENV MY_VAR=$MYVAR
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./ 
@@ -8,7 +9,8 @@ RUN npm ci -legacy-peer-deps && npm cache clean --force
 
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
-
+ARG BACKEND_ENDPOINT
+ENV MY_VAR=$MYVAR
 WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
@@ -19,6 +21,8 @@ RUN npm run build
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
+ARG BACKEND_ENDPOINT
+ENV MY_VAR=$MYVAR
 WORKDIR /app
 
 ENV NODE_ENV production
@@ -38,4 +42,4 @@ USER nextjs
 
 ENV PORT 3000
 
-CMD ["node", "server.js"]
+CMD ["node", "server.js", "next", "start"]

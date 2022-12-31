@@ -2,14 +2,13 @@ version: "3.9"
 services:
   frontend:
     build:
+      args:
+        - BACKEND_ENDPOINT=http://localhost:8888
       context: client
       dockerfile: Dockerfile
     container_name: client
     ports:
       - "3000:3000"
-    environment:
-      - BACKEND_ENDPOINT=http://localhost:8888
-
   backend:
     build:
       context: firstapi
@@ -22,7 +21,6 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/vsdb
     depends_on:
       - database
-
   database:
     container_name: postgresdb
     ports:

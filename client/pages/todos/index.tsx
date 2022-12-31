@@ -54,8 +54,7 @@ const fetcher = async (url: string) => {
   return res.json();
 };
 
-export function useTodos() {
-  const url = process.env.BACKEND_ENDPOINT;
+export function useTodos(url:any) {
   const { data, error } = useSWR(url + '/todos/', fetcher, { dedupingInterval: 60000, revalidateOnFocus: false });
   return {
     todos: data,
@@ -69,7 +68,8 @@ function findClosedTodos(todos:typeObject) {
 }
 
 export default function Todos() {
-  const { todos, isLoading, isError } = useTodos();
+  const url = process.env.BACKEND_ENDPOINT;
+  const { todos, isLoading, isError } = useTodos(url);
   const [state, setState] = useState({
     name: '',
     priority: 2,
