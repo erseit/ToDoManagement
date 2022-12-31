@@ -82,60 +82,29 @@ git clone https://github.com/erseit/ToDoManagement.git
 2. Install Docker.<br>
    [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-3. Build backend
+3. Get jar file from backend
 
 - Go to server folder with command lines
 ```
 cd [path_to_root_folder]/firstapi
 ```
-- Build a docker image for server
+- Build a jar file
 ```
-docker build -t [image_name] .
+mvn clean install
 ```
+4. Build frontend, backend and database
 
-- Create a network 
-```
-docker network create [network_name]
-```
-- Start a container and connect it to the network
-```
-docker run -d --name [container_name] --net [network_name] [image_name]
-```
+- All environemnt variables defined in [docker-compose.yaml](https://github.com/erseit/ToDoManagement/blob/main/docker-compose.yaml). All changes should be done in this file.
 
-- Start a container with haproxy. This container listens in outside port 80:inside port 80
-```
-docker run -d --name [container_name] --net [network_name] -v [path_to_root_folder]/firstapi:/usr/local/etc/haproxy:ro -p 80:80 haproxytech/haproxy-alpine:2.4
-```
+- Go to root folder
 
-4. Now server is available on `http://localhost:80`.
-
-- To read more about the Todo API, run the Project and visit `http://localhost:80/wiki.html` to see the swagger documentation.
-
-5. Build frontend
-
-- Backend end point is to be defined in [next.config.js](https://github.com/erseit/ToDoManagement/blob/main/client/next.config.js). It should be updated before build, if it has to be changed.
-  
-  default backend end point : `http://localhost:80`
-
-- Frontend Port Nummer is to be defined in [Dockerfile](https://github.com/erseit/ToDoManagement/blob/main/client/Dockerfile) in client folder. If frontend and backend both are started on the same resource,
-  it should match with the URI and Port Nummer which is to be defined in backend build for CORS Policy.
-  
-  default Port Nummer : 3000
-
-- Go to client folder with command lines
+- Build docker images and then containers.
 ```
-cd [path_to_root_folder]/client
+docker-compose up
 ```
-- Build a docker image for client
-```
-docker build -t [image_name] .
-```
+4. Now server is available on `http://localhost:8888` and client is available on `http://localhost:3000`.
 
-- Start a container. This container listens in outside port 3000:inside port 3000
-```
-docker run -d --name [container_name] -p 3000:3000 -t [image_name]
-```
+- To read more about the Todo API, run the Project and visit `http://localhost:8888/wiki.html` to see the swagger documentation.
 
-6. Now client is available on `http://localhost:3000`.
 
 
