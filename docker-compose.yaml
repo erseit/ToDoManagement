@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    container_name: client
+    ports:
+      - "3000:3000"
+    environment:
+      - BACKEND_ENDPOINT=http://localhost:8888
+
+  backend:
+    build:
+      context: firstapi
+      dockerfile: Dockerfile
+    container_name: server
+    ports:
+      - "8888:8888"
+    environment:
+      - SERVER_PORT=8888
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/vsdb
+    depends_on:
+      - database
+
+  database:
+    container_name: postgresdb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=vsdb
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    image: "postgres:alpine"

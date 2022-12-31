@@ -10,7 +10,7 @@ import Transition from '../global/Transition';
 export default function DeleteTodo({ state, setState }: any) {
   const [showLoading, setShowLoading] = useState(false);
   const { mutate } = useSWRConfig();
-  const url = process.env.HOST;
+  const url = process.env.BACKEND_ENDPOINT;
 
   return (
     <Transition show={state.showDeleteAlert} maxLength="max-w-lg">

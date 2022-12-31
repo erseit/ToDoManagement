@@ -152,6 +152,7 @@ public class ApiController {
                 if (item.getIsClosed()) {
                     existingItem.setIsClosed(item.getIsClosed());
                 }
+                todoItemRepository.save(existingItem);
                 return new ResponseEntity<TodoItem>(existingItem, HttpStatus.OK);
 
             }

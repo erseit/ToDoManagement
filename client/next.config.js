@@ -1,13 +1,11 @@
 /** @type {import('next').NextConfig} */
-HOSTNAME="http://localhost";
-PORT="80";
 
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   output: 'standalone',
   env: {
-    HOST: `${HOSTNAME}:${PORT}`
+    BACKEND_ENDPOINT: process.env.BACKEND_ENDPOINT,
   },  
 }
 

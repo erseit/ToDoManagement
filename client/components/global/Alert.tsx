@@ -9,7 +9,7 @@ export default function Alert({ message, type, onClick }: { message?: string; ty
     <div
       className={classNames(
         type === 'success' ? 'bg-green-50' : 'bg-rose-50',
-        'p-4 absolute right-0 top-0 z-50 w-screen md:w-fit',
+        'p-4 absolute right-4 top-5 z-50 w-screen md:w-fit rounded-lg',
       )}
     >
       <div className="flex">

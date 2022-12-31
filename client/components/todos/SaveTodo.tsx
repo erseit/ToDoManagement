@@ -7,7 +7,7 @@ import Button from '../global/Button';
 export default function SaveTodo({ state, setState }: any) {
   const [showLoading, setShowLoading] = useState(false);
   const { mutate } = useSWRConfig();
-  const url = process.env.HOST;
+  const url = process.env.BACKEND_ENDPOINT;
   return (
     <div className="py-3 mt-2 text-right">
       <Button

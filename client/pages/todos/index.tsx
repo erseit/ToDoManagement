@@ -55,7 +55,7 @@ const fetcher = async (url: string) => {
 };
 
 export function useTodos() {
-  const url = process.env.HOST;
+  const url = process.env.BACKEND_ENDPOINT;
   const { data, error } = useSWR(url + '/todos/', fetcher, { dedupingInterval: 60000, revalidateOnFocus: false });
   return {
     todos: data,
