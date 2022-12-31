@@ -78,7 +78,6 @@ You can [edit](https://user-images.githubusercontent.com/100692657/205428219-33a
 ```
 git clone https://github.com/erseit/ToDoManagement.git
 ```
-
 2. Install Docker.<br>
    [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
