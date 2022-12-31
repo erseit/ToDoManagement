@@ -56,6 +56,7 @@ You can [edit](https://user-images.githubusercontent.com/100692657/205428219-33a
 |   │   │   |   └── ApiController.java
 |   │   │   |   └── FirstapiApplication.java
 |   │   │   |   └── TodoItem.java
+|   │   │   |   └── TodoItemRepository.java
 │   │   |   ├── /resources
 |   │   │   |   └── application.properties      # All configurations and environment variables for backend
 │   │   ├── /test
@@ -63,8 +64,8 @@ You can [edit](https://user-images.githubusercontent.com/100692657/205428219-33a
 │   ├── pom.xml
 │   └── ...
 │
-│   # Config Files for Proxy
-├── haproxy.cfg
+│   # Docker compose file
+├── docker-compose-yaml
 │
 │   # Project Description
 └── README.md
@@ -82,12 +83,6 @@ git clone https://github.com/erseit/ToDoManagement.git
    [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 3. Build backend
-
-- If frontend and backend both are started on the same resource, we should disable CORS. 
-  It was defined in [ApiController.java](https://github.com/erseit/ToDoManagement/blob/main/firstapi/src/main/java/com/example/firstapi/ApiController.java). URI and Port Nummer of Frontend should be given
-```
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 360000)
-```
 
 - Go to server folder with command lines
 ```
