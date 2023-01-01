@@ -9,6 +9,8 @@ services:
     container_name: client
     ports:
       - "3000:3000"
+    networks:
+      - vsnet
   backend:
     build:
       context: firstapi
@@ -21,6 +23,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/vsdb
     depends_on:
       - database
+    networks:
+      - vsnet
   database:
     container_name: postgresdb
     ports:
@@ -31,3 +35,13 @@ services:
       - POSTGRES_DB=vsdb
       - PGDATA=/var/lib/postgresql/data/pgdata
     image: "postgres:alpine"
+    networks:
+      - vsnet
+    volumes:
+      - vsvol:/var/lib/postgresql/data
+networks:
+  vsnet:
+    name: vsnet
+volumes:
+  vsvol:
+    external: true
