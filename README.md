@@ -93,7 +93,7 @@ mvn clean install
 ```
 4. Build frontend, backend and database
 
-- All environemnt variables defined in [docker-compose.yaml](https://github.com/erseit/ToDoManagement/blob/main/docker-compose.yaml). All changes should be done in this file.
+- All environment variables defined in [docker-compose.yaml](https://github.com/erseit/ToDoManagement/blob/main/docker-compose.yaml). All changes should be done in this file.
 
 - Go to root folder
 
