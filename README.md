@@ -81,7 +81,7 @@ git clone https://github.com/erseit/ToDoManagement.git
 2. Install Docker.<br>
    [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-3. Get jar file from backend
+3. Get a jar file from backend
 
 - Go to server folder with command lines
 ```
@@ -96,6 +96,11 @@ mvn clean install
 - All environemnt variables defined in [docker-compose.yaml](https://github.com/erseit/ToDoManagement/blob/main/docker-compose.yaml). All changes should be done in this file.
 
 - Go to root folder
+
+- Create a docker volume for data persistency. Default volume name in this projekt is vsvol. If you want to give another volume's name, you should change configurations in [docker-compose.yaml](https://github.com/erseit/ToDoManagement/blob/main/docker-compose.yaml).
+```
+docker volume create vsvol
+```
 
 - Build docker images and then containers.
 ```
