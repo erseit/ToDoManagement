@@ -1,6 +1,6 @@
 <h1 align="center">ToDo Management System</h1>
 
-<p align="center">This Todo App was made for the Distributed and Parallel systems Lab Exercise at HS-Esslingen.</p>
+<p align="center">This Todo App was made for the Distributed and Parallel Systems Lab Exercise at HS-Esslingen.</p>
 
 ## 📌 - Description
 
