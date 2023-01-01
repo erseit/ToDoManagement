@@ -97,7 +97,7 @@ mvn clean install
 
 - Go to root folder
 
-- Create a docker volume for data persistency. Default volume name in this projekt is vsvol. If you want to give another volume's name, you should change configurations in [docker-compose.yaml](https://github.com/erseit/ToDoManagement/blob/main/docker-compose.yaml).
+- Create a docker volume for data persistency. Default volume's name in this project is <strong>vsvol<strong>. If you want to give another volume's name, you should change configurations in [docker-compose.yaml](https://github.com/erseit/ToDoManagement/blob/main/docker-compose.yaml).
 ```
 docker volume create vsvol
 ```
