@@ -19,7 +19,6 @@ You can [edit](https://user-images.githubusercontent.com/100692657/205428219-33a
 - Server
   - [Spring Boot with Maven](https://start.spring.io/)
   - [Spring Guides](https://spring.io/guides/gs/rest-service/)
-  - [Baeldung Guides](www.baeldung.com/spring-rest-openapi-documentation)
 - Documentation
   - [Swagger](https://swagger.io/docs/)
 
