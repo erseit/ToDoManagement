@@ -17,7 +17,7 @@ You can [edit](https://user-images.githubusercontent.com/100692657/205428219-33a
   - [Next.js](https://nextjs.org/docs)
   - [Tailwind CSS](https://tailwindcss.com/docs/installation)
 - Server
-  - [Java Spring with Maven](https://start.spring.io/)
+  - [Spring Boot with Maven](https://start.spring.io/)
   - [Spring Guides](https://spring.io/guides/gs/rest-service/)
   - [Baeldung Guides](www.baeldung.com/spring-rest-openapi-documentation)
 - Documentation
