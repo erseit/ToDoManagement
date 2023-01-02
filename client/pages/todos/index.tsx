@@ -8,7 +8,6 @@ import Transiton from '../../components/global/Transition';
 import NewForm from '../../components/todos/NewForm';
 import Alert from '../../components/global/Alert';
 import ShowList from "../../components/todos/ShowList";
-import UserNameForm from '../../components/todos/UserNameForm'
 
 interface typeObject {
   [key: string]: any;
@@ -82,8 +81,6 @@ export default function Todos() {
       message: '',
     },
     showDeleteAlert: false,
-    userName: '',
-    showUserNameForm: true,
   });
 
   return (
@@ -104,18 +101,13 @@ export default function Todos() {
           }}
         />
       )}
-      {!state.showUserNameForm && isError && <HttpError error={isError} />}
+      {isError && <HttpError error={isError} />}
       {isLoading && (
         <div className="absolute inset-1/2">
           <CircularProgress className="text-primary" style={{ color: 'primary' }} />
         </div>
       )}
-      {state.showUserNameForm && (
-        <Transiton show={state.showUserNameForm}>
-        <UserNameForm state={state} setState={setState} />
-      </Transiton>
-      )}
-      {!isLoading && !isError && !state.showUserNameForm && (
+      {!isLoading && !isError && (
         <>
           {state.showForm && (
             <Transiton show={state.showForm}>
@@ -130,7 +122,7 @@ export default function Todos() {
 
           <main className="p-8 flex flex-col">
           <h1 className={styles.title}>
-              Welcome, <span className="text-sky-500">{state.userName}{" !"}</span>
+              Welcome to your ToDo Management System!
             </h1>
             {todos?.length > 0 && (
               <p className="text-2xl text-center">

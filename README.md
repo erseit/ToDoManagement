@@ -110,7 +110,7 @@ docker-compose up
 ```
 4. Now server is available on `http://localhost:8888` and client is available on `http://localhost:3000`.
 
-- To read more about the Todo API, run the Project and visit `http://localhost:8888/wiki.html` to see the swagger documentation.
+- To read more about the Todo API, run the Project and visit [http://localhost:8888/wiki.html](http://localhost:8888/wiki.html) to see the swagger documentation.
 
 
 
