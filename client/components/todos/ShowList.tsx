@@ -11,7 +11,7 @@ function findOpenTodos(todos: typeObject) {
 
 export default function ShowList({ state, setState, todos }: any) {
   return (
-    <ul role="list" className="grid grid-cols-1 my-2 sm:grid-cols-2 md:grid-cols-3  rounded-lg">
+    <ul role="list" className="grid grid-cols-1 my-2 sm:grid-cols-2 md:grid-cols-4  rounded-lg">
       {findOpenTodos(todos)
         ?.sort(function (a: any, b: any) {
           return a.priority - b.priority;
