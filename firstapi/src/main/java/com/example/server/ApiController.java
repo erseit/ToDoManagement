@@ -30,17 +30,6 @@ public class ApiController {
     @Autowired
     TodoItemRepository todoItemRepository;
 
-    public TodoItem findItemWithName(List<TodoItem> items, String todo) {
-        Iterator<TodoItem> i = items.iterator();
-        while (i.hasNext()) {
-            TodoItem template = i.next();
-            if (template.getTodo().equalsIgnoreCase(todo) && !template.getIsClosed()) {
-                return template;
-            }
-        }
-        return new TodoItem();
-    }
-
     @Operation(summary = "Returns the version number.")
     @GetMapping("/version")
     public String getVersion() {
@@ -60,9 +49,8 @@ public class ApiController {
     public ResponseEntity<TodoItem> createAndAddItem(
             @PathVariable @Parameter(name = "name", description = "Give the name of todo.") String name) {
         try {
-            List<TodoItem> allItems = todoItemRepository.findAll();
             TodoItem newItem = new TodoItem(name);
-            TodoItem existingItem = findItemWithName(allItems, name);
+            TodoItem existingItem = todoItemRepository.findByTodo(name);
             if (existingItem.getID() == null) {
                 todoItemRepository.save(newItem);
                 return new ResponseEntity<TodoItem>(newItem, HttpStatus.CREATED);
@@ -93,12 +81,11 @@ public class ApiController {
     @PostMapping("/")
     public ResponseEntity<TodoItem> addItem(@RequestBody TodoItem item) {
         try {
-            List<TodoItem> allItems = todoItemRepository.findAll();
             if (item.getTodo().length() == 0 || item.getTodo().equalsIgnoreCase("string") || item.getPriority() < 1
                     || item.getPriority() > 5) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             } else {
-                TodoItem requestedItem = findItemWithName(allItems, item.getTodo());
+                TodoItem requestedItem = todoItemRepository.findByTodo(item.getTodo());
                 if (requestedItem.getID() == null) {
                     TodoItem newItem = new TodoItem(item.getTodo(), item.getPriority());
                     todoItemRepository.save(newItem);
@@ -132,12 +119,11 @@ public class ApiController {
     @PutMapping("/{id}")
     public ResponseEntity<TodoItem> updateItem(@PathVariable String id, @RequestBody(required = false) TodoItem item) {
         try {
-            List<TodoItem> allItems = todoItemRepository.findAll();
             TodoItem existingItem = todoItemRepository.findById(id).get();
             if (existingItem.getID() == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } else {
-                TodoItem existingTodo = findItemWithName(allItems, item.getTodo());
+                TodoItem existingTodo = todoItemRepository.findByTodo(item.getTodo());
 
                 if(existingTodo.getID() != null && (existingTodo.getID() != existingItem.getID())) {
                     return new ResponseEntity<>(HttpStatus.FORBIDDEN);
